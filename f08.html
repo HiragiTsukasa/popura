@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>新聞記事保存庫 - 個人的スクラップ置き場</title>
+<style>
+body{background:#dcdcd4;font-family:"MS PGothic",serif;font-size:13px;color:#111;margin:0}
+#bar{background:#555;color:#eee;font-size:11px;padding:6px 14px}
+#wrap{max-width:680px;margin:16px auto}
+.clip{background:#fbfaf2;border:1px solid #999;box-shadow:2px 2px 0 #bbb;margin-bottom:22px;padding:16px}
+.clip .src{font-size:10px;color:#666;border-bottom:1px solid #ccc;padding-bottom:4px;margin-bottom:8px}
+.clip h2{font-size:17px;margin:0 0 8px;font-weight:bold}
+.clip p{line-height:1.9;margin:6px 0}
+.memo{background:#ffffcc;border:1px dashed #cc0;font-size:11px;padding:6px 10px;margin-top:8px}
+#idx{background:#eee;border:1px solid #999;padding:10px 14px;font-size:12px;margin-bottom:18px}
+</style>
+</head>
+<body>
+<div id="bar">新聞記事保存庫|管理人が気になった地元記事を書き写して保存しています(誤字はご容赦)</div>
+<div id="wrap">
+
+<div id="idx">
+<b>収蔵記事</b><br>
+・<a href="#n1">藤見市で建設工事が集中(2003/12)</a><br>
+・<a href="#n2">北郷製鋼 検査値異常か(2003/10)/続報:問題なし(2003/11)</a><br>
+・<a href="#n3">製鋼所作業員と連絡取れず(2003/10)</a><br>
+</div>
+
+<div class="clip" id="n1">
+<div class="src">県民新報 2003年12月7日 地域面</div>
+<h2>藤見市で建設工事が集中 合同庁舎・区画整理に共同住宅も</h2>
+<p>藤見市内で建設工事が相次いでいる。市によると11月の建築着工件数は前年同月の約3倍。国の藤見地方合同庁舎(労働基準監督署などが入居予定)の新築工事と駅前区画整理事業が進むなか、単身者向け共同住宅の着工も集中した。</p>
+<p>一方、資材の調達難を指摘する声もある。市内の建設業者は「鉄筋の納期が読めず、工程のやりくりに苦労している」と話す。県内の製鋼各社は増産体制で対応しているという。</p>
+</div>
+
+<div class="clip" id="n2">
+<div class="src">鉄鋼産業タイムズ 2003年10月24日</div>
+<h2>北郷製鋼、一部ロットの成分検査値に異常か</h2>
+<p>北郷製鋼(藤見市)の藤見工場で今月中旬に出鋼された一部ロットについて、成分分析値に通常と異なる数値が確認されたことが関係者への取材で分かった。リン、硫黄等の含有値が基準を上回った可能性があるという。同社は「確認中」としている。</p>
+<div class="src" style="margin-top:14px">鉄鋼産業タイムズ 2003年11月6日</div>
+<h2>北郷製鋼「品質に問題なし」 社内再検査で結論</h2>
+<p>北郷製鋼は5日、先月報じられた成分検査値の件について「社内で再検査を実施した結果、出荷製品の品質に問題は確認されなかった」と発表した。指摘のあった分析値は「測定機器の一時的な不調によるもの」と説明している。第三者機関による検証は行われていない。</p>
+<div class="memo">管理人メモ:この件の続報は見つからなかった。以上。</div>
+</div>
+
+<div class="clip" id="n3">
+<div class="src">県民新報 2003年10月17日 地域面(ベタ記事)</div>
+<h2>製鋼所の作業員と連絡取れず 藤見署が行方を捜す</h2>
+<p>藤見市内の製鋼所に勤務する男性作業員(28)と14日から連絡が取れなくなっていることが分かった。勤務先によると男性は14日夜の勤務を無断欠勤し、以降出社していないという。家族から行方不明者届が出されており、藤見署が行方を捜している。</p>
+</div>
+
+<div id="n4slot"></div>
+
+</div>
+
+<script>
+(function(){
+ if(location.search.indexOf('k=1103')<0)return;
+ var B='PGRpdiBjbGFzcz0iY2xpcCIgaWQ9Im40Ij4KPGRpdiBjbGFzcz0ic3JjIj7nnIzmsJHmlrDloLEgMjAwNuW5tDEw5pyIMTnml6Ug56S+5Lya6Z2iPC9kaXY+CjxoMj7ol6TopovluILjga7jgqLjg5Hjg7zjg4jjgaflpJblo4HjgYzltKnokL0g5L2P5Lq655S35oCn44GM5LiL5pW344GN44GrPC9oMj4KPHA+MTjml6XljYjliY0y5pmC44GU44KN44CB6Jek6KaL5biC5rud5bed55S644Gu5YWx5ZCM5L2P5a6F44Gn5aSW5aOB44Gu5LiA6YOo44GM5bSp6JC944GX44CBMumajuOBq+S9j+OCgOS8muekvuWToeeUt+aApygyNinjgYzltKnjgozjgZ/pg6jmnZDjga7kuIvmlbfjgY3jgavjgarjgaPjgZ/jgILnlLfmgKfjga/luILlhoXjga7nl4XpmaLjgavmkKzpgIHjgZXjgozjgIHmhI/orZjkuI3mmI7jga7ph43kvZPjgILluILjga/lkIzkvY/lroXjga7ku5bjga7kvY/kurrjgpLpgb/pm6PjgZXjgZvjgIHlu7rnianjga7mp4vpgKDoqr/mn7vjgpLlp4vjgoHjgZ/jgILnr4ky5bm05L2Z44KK44Gu5bu654mp44Gn5aSW5aOB44GM5bSp6JC944GZ44KL44Gu44Gv5qW144KB44Gm55Ww5L6L44CCPC9wPgo8ZGl2IGNsYXNzPSJzcmMiIHN0eWxlPSJtYXJnaW4tdG9wOjE0cHgiPuecjOawkeaWsOWgsSAyMDA25bm0MTDmnIgyM+aXpSDnpL7kvJrpnaI8L2Rpdj4KPGgyPuW0qeiQveS6i+aVheOBrueUt+aAp+OBjOatu+S6oTwvaDI+CjxwPuiXpOimi+W4gua7neW3neeUuuOBruOCouODkeODvOODiOWkluWjgeW0qeiQveS6i+aVheOBp+OAgeS4i+aVt+OBjeOBq+OBquOCiumHjeS9k+OBqOOBquOBo+OBpuOBhOOBn+S8muekvuWToeeUt+aApygyNinjgYwyM+aXpeWNiOWJjTTmmYIxMuWIhuOAgeaQrOmAgeWFiOOBrueXhemZouOBp+atu+S6oeOBl+OBn+OAguayu+eZguOBjOe2muOBkeOCieOCjOOBpuOBhOOBn+OBjOOAgeaEj+itmOOBr+aIu+OCieOBquOBi+OBo+OBn+OAguecjOOBqOW4guOBr+W0qeiQveWOn+WboOOBruiqv+afu+OCkumAsuOCgeOBpuOBiuOCiuOAgeS9v+eUqOOBleOCjOOBn+W7uuadkOOBruW8t+W6puippumok+OCkuihjOOBhuaWuemHneOAgjwvcD4KPC9kaXY+';
+ var h=new TextDecoder('utf-8').decode(Uint8Array.from(atob(B),function(c){return c.charCodeAt(0)}));
+ document.getElementById('n4slot').innerHTML=h;
+ var idx=document.getElementById('idx');
+ if(idx){idx.innerHTML+=new TextDecoder('utf-8').decode(Uint8Array.from(atob('PGJyPuODuzxhIGhyZWY9IiNuNCI+44CQ5paw552A44CR5biC5YaF44Ki44OR44O844OI44Gn5aSW5aOB5bSp6JC9KDIwMDYvMTApPC9hPg=='),function(c){return c.charCodeAt(0)}));}
+ if(location.hash==='#n4'){setTimeout(function(){var el=document.getElementById('n4');if(el)el.scrollIntoView();},60);}
+})();
+</script>
+</body>
+</html>

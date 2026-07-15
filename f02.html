@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>事故物件チェッカー|藤見市の事故物件マップ</title>
+<style>
+body{font-family:"MS PGothic","Meiryo",sans-serif;margin:0;background:#e8e8e0;color:#222;font-size:13px}
+#head{background:#fff;border-bottom:3px solid #d43;padding:8px 14px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+#head h1{margin:0;font-size:20px;color:#d43}
+#head h1 span{font-size:11px;color:#666;font-weight:normal;margin-left:8px}
+#searchbar{background:#f6f3ea;padding:8px 14px;border-bottom:1px solid #ccc}
+#searchbar input{width:min(340px,60%);padding:6px;border:1px solid #aaa;font-size:13px}
+#searchbar button{padding:6px 18px;background:#d43;color:#fff;border:none;font-size:13px;cursor:pointer}
+#stats{font-size:11px;color:#777;margin-left:10px}
+#mapwrap{position:relative;max-width:860px;margin:14px auto;border:1px solid #999;background:#f2efe4;overflow:hidden}
+#map{display:block;width:100%;height:auto}
+.pin{cursor:pointer}
+.pin:hover circle{stroke:#000}
+#balloon{position:absolute;display:none;background:#fffef5;border:1px solid #333;box-shadow:2px 2px 4px rgba(0,0,0,.3);padding:8px 12px;font-size:12px;max-width:230px;z-index:10;line-height:1.6}
+#balloon .bt{font-weight:bold;color:#a22;border-bottom:1px solid #ddd;margin-bottom:4px;padding-bottom:2px}
+#balloon .close{float:right;cursor:pointer;color:#888;font-weight:bold;margin-left:8px}
+#noresult{position:absolute;display:none;left:50%;top:38%;transform:translate(-50%,-50%);background:rgba(255,255,255,.96);border:2px solid #2a7a2a;padding:12px 18px;font-size:13px;z-index:11;text-align:center;box-shadow:2px 2px 6px rgba(0,0,0,.25)}
+#noresult b{color:#2a7a2a;font-size:15px}
+#searchring{display:none}
+#legend{max-width:860px;margin:0 auto 16px;font-size:11px;color:#555;padding:0 4px;line-height:1.8}
+.flame{filter:drop-shadow(0 1px 1px rgba(0,0,0,.4))}
+</style>
+</head>
+<body>
+
+<div id="head">
+<h1>事故物件チェッカー<span>〜住む前に、知る。〜</span></h1>
+</div>
+<div id="searchbar">
+<input type="text" id="q" placeholder="住所・地名で検索(例:藤見市滝川町2丁目)">
+<button onclick="doSearch()">この場所を調べる</button>
+<span id="stats">藤見市内の登録物件:14件(全国 41,326件)</span>
+</div>
+
+<div id="mapwrap">
+<svg id="map" viewBox="0 0 860 560" xmlns="http://www.w3.org/2000/svg">
+<!-- 地面 -->
+<rect width="860" height="560" fill="#f2efe4"/>
+<!-- 川 -->
+<path d="M -10 90 C 180 130, 260 40, 430 80 C 600 120, 700 60, 880 100 L 880 150 C 700 110, 600 170, 430 130 C 260 90, 180 180, -10 140 Z" fill="#aacde8"/>
+<text x="330" y="70" font-size="12" fill="#5a89ad">藤見川</text>
+<!-- 公園 -->
+<rect x="600" y="380" width="120" height="90" fill="#cde3b5" stroke="#a8c88a"/>
+<text x="618" y="430" font-size="11" fill="#6a8a4a">中央公園</text>
+<!-- 幹線道路 -->
+<rect x="0" y="270" width="860" height="22" fill="#fff" stroke="#bbb"/>
+<rect x="400" y="0" width="20" height="560" fill="#fff" stroke="#bbb"/>
+<rect x="120" y="150" width="14" height="410" fill="#fff" stroke="#ccc"/>
+<rect x="660" y="150" width="14" height="410" fill="#fff" stroke="#ccc"/>
+<rect x="120" y="440" width="554" height="14" fill="#fff" stroke="#ccc"/>
+<text x="430" y="286" font-size="10" fill="#999">県道4号</text>
+<!-- 鉄道と駅 -->
+<path d="M -10 340 L 880 320" stroke="#555" stroke-width="4" stroke-dasharray="14 5"/>
+<rect x="390" y="316" width="60" height="26" fill="#444"/>
+<text x="398" y="333" font-size="11" fill="#fff">藤見駅</text>
+<!-- 地名 -->
+<text x="60" y="230" font-size="13" fill="#8a8a7a">港南</text>
+<text x="200" y="380" font-size="13" fill="#8a8a7a">本町</text>
+<text x="500" y="200" font-size="13" fill="#8a8a7a">滝川町</text>
+<text x="540" y="500" font-size="13" fill="#8a8a7a">青葉台</text>
+<text x="150" y="520" font-size="13" fill="#8a8a7a">緑ヶ丘</text>
+<text x="720" y="240" font-size="13" fill="#8a8a7a">東滝川</text>
+
+<!-- 検索リング(滝川町2丁目中心・該当なし表示用) -->
+<g id="searchring">
+<circle cx="520" cy="170" r="70" fill="rgba(42,122,42,0.08)" stroke="#2a7a2a" stroke-width="2" stroke-dasharray="6 4"/>
+<circle cx="520" cy="170" r="4" fill="#2a7a2a"/>
+</g>
+
+<!-- 事故物件ピン(炎アイコン)。滝川町・青葉台1丁目周辺には一切置かない -->
+<g class="pin" data-t="本町1丁目 アパート" data-d="1998年頃" data-x="孤独死。発見まで約2ヶ月。"><g class="flame" transform="translate(180,350)"><path d="M0 0 C -7 -8, -4 -16, 0 -22 C 2 -16, 6 -14, 6 -8 C 6 -3, 3 0, 0 0 Z" fill="#e53" stroke="#a22"/><circle cx="0" cy="-8" r="3" fill="#fc3"/></g></g>
+<g class="pin" data-t="本町3丁目 貸家" data-d="2001年" data-x="火災により1名死亡。"><g class="flame" transform="translate(250,410)"><path d="M0 0 C -7 -8, -4 -16, 0 -22 C 2 -16, 6 -14, 6 -8 C 6 -3, 3 0, 0 0 Z" fill="#e53" stroke="#a22"/><circle cx="0" cy="-8" r="3" fill="#fc3"/></g></g>
+<g class="pin" data-t="港南2丁目 マンション" data-d="2002年" data-x="飛び降り。詳細不明。"><g class="flame" transform="translate(90,180)"><path d="M0 0 C -7 -8, -4 -16, 0 -22 C 2 -16, 6 -14, 6 -8 C 6 -3, 3 0, 0 0 Z" fill="#e53" stroke="#a22"/><circle cx="0" cy="-8" r="3" fill="#fc3"/></g></g>
+<g class="pin" data-t="港南3丁目 社員寮(解体済)" data-d="1996年" data-x="事件。報道あり。現在は駐車場。"><g class="flame" transform="translate(70,250)"><path d="M0 0 C -7 -8, -4 -16, 0 -22 C 2 -16, 6 -14, 6 -8 C 6 -3, 3 0, 0 0 Z" fill="#e53" stroke="#a22"/><circle cx="0" cy="-8" r="3" fill="#fc3"/></g></g>
+<g class="pin" data-t="駅前 雑居ビル" data-d="2004年" data-x="転落死。事故と事件の両面で捜査。"><g class="flame" transform="translate(370,360)"><path d="M0 0 C -7 -8, -4 -16, 0 -22 C 2 -16, 6 -14, 6 -8 C 6 -3, 3 0, 0 0 Z" fill="#e53" stroke="#a22"/><circle cx="0" cy="-8" r="3" fill="#fc3"/></g></g>
+<g class="pin" data-t="緑ヶ丘 団地5号棟" data-d="1999年" data-x="孤独死。"><g class="flame" transform="translate(160,480)"><path d="M0 0 C -7 -8, -4 -16, 0 -22 C 2 -16, 6 -14, 6 -8 C 6 -3, 3 0, 0 0 Z" fill="#e53" stroke="#a22"/><circle cx="0" cy="-8" r="3" fill="#fc3"/></g></g>
+<g class="pin" data-t="緑ヶ丘 一戸建て" data-d="2003年" data-x="住人が浴室で死亡。病死とみられる。"><g class="flame" transform="translate(230,530)"><path d="M0 0 C -7 -8, -4 -16, 0 -22 C 2 -16, 6 -14, 6 -8 C 6 -3, 3 0, 0 0 Z" fill="#e53" stroke="#a22"/><circle cx="0" cy="-8" r="3" fill="#fc3"/></g></g>
+<g class="pin" data-t="東滝川 アパート" data-d="1997年" data-x="孤独死。"><g class="flame" transform="translate(760,300)"><path d="M0 0 C -7 -8, -4 -16, 0 -22 C 2 -16, 6 -14, 6 -8 C 6 -3, 3 0, 0 0 Z" fill="#e53" stroke="#a22"/><circle cx="0" cy="-8" r="3" fill="#fc3"/></g></g>
+<g class="pin" data-t="青葉台4丁目 マンション" data-d="2000年" data-x="ベランダから転落。"><g class="flame" transform="translate(760,520)"><path d="M0 0 C -7 -8, -4 -16, 0 -22 C 2 -16, 6 -14, 6 -8 C 6 -3, 3 0, 0 0 Z" fill="#e53" stroke="#a22"/><circle cx="0" cy="-8" r="3" fill="#fc3"/></g></g>
+</svg>
+
+<div id="balloon"></div>
+<div id="noresult">
+<b>該当する登録物件はありません</b><br>
+検索地点から半径500m以内に、当データベースに<br>登録された事故物件は見つかりませんでした。
+</div>
+</div>
+
+<div id="legend">
+🔥 炎のマークが登録物件です。クリックで概要を表示します。<br>
+※本サイトは報道・裁判記録・投稿情報をもとに作成しています。掲載がないことは、当該物件の安全を保証するものではありません。<br>
+※掲載対象は原則として「物件内で発生した死亡事案」です。
+</div>
+
+<script>
+var balloon=document.getElementById('balloon');
+var wrap=document.getElementById('mapwrap');
+document.querySelectorAll('.pin').forEach(function(p){
+  p.addEventListener('click',function(ev){
+    var r=wrap.getBoundingClientRect();
+    balloon.innerHTML='<span class="close" onclick="this.parentNode.style.display=\'none\'">×</span><div class="bt">'+p.dataset.t+'</div>発生時期:'+p.dataset.d+'<br>'+p.dataset.x;
+    balloon.style.left=Math.min(ev.clientX-r.left+12, r.width-240)+'px';
+    balloon.style.top=(ev.clientY-r.top+12)+'px';
+    balloon.style.display='block';
+    document.getElementById('noresult').style.display='none';
+  });
+});
+function doSearch(){
+  var q=document.getElementById('q').value;
+  if(q.trim()==='')return;
+  balloon.style.display='none';
+  document.getElementById('searchring').style.display='block';
+  document.getElementById('noresult').style.display='block';
+}
+document.getElementById('q').addEventListener('keydown',function(e){if(e.key==='Enter')doSearch();});
+</script>
+</body>
+</html>

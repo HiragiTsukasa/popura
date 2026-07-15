@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>丸勝鋼材株式会社|鉄鋼製品の販売・加工</title>
+<style>
+body{font-family:"MS PGothic",sans-serif;font-size:13px;color:#123;margin:0;background:#e9edf2}
+#head{background:#123a6b;color:#fff;padding:10px 16px}
+#head h1{margin:0;font-size:20px;letter-spacing:3px}
+#head p{margin:2px 0 0;font-size:10px;color:#abd}
+#nav{background:#2b5aa0;color:#fff;font-size:12px;padding:4px 16px}
+#nav a{color:#fff;margin-right:14px;text-decoration:none}
+#wrap{max-width:720px;margin:14px auto;background:#fff;border:1px solid #99a;padding:18px}
+h2{font-size:15px;background:#dde6f2;border-left:6px solid #123a6b;padding:5px 10px}
+table{border-collapse:collapse;width:100%;font-size:12px}
+td,th{border:1px solid #bcd;padding:6px 8px;text-align:left}
+th{background:#eef3fa;width:130px}
+.news li{margin-bottom:6px;line-height:1.6}
+#gate{background:#f4f6fa;border:1px solid #99a;padding:14px;margin-top:8px}
+#pdf{display:none;border:1px solid #333;background:#fbfbf6;padding:14px;margin-top:10px;font-family:monospace;font-size:12px}
+input{border:1px solid #889;padding:4px}
+button{background:#123a6b;color:#fff;border:none;padding:4px 16px;cursor:pointer}
+.small{font-size:10px;color:#667}
+</style>
+</head>
+<body>
+<div id="head">
+<h1>丸勝鋼材株式会社</h1>
+<p>MARUKATSU STEEL CO. - 創業昭和26年 鉄と共に半世紀</p>
+</div>
+<div id="nav"><a href="#a">会社概要</a><a href="#b">沿革</a><a href="#c">取扱メーカー</a><a href="#d">お知らせ</a><a href="#e">関係者様</a></div>
+<div id="wrap">
+
+<h2 id="a">会社概要</h2>
+<table>
+<tr><th>商号</th><td>丸勝鋼材株式会社</td></tr>
+<tr><th>所在地</th><td>藤見市港南3-2-1</td></tr>
+<tr><th>事業内容</th><td>鉄鋼製品(棒鋼・形鋼・鋼板)の販売、加工、配送</td></tr>
+<tr><th>主要取引先</th><td>県内建設会社各社、田島工務店、大栄建設、藤見ハウジング ほか</td></tr>
+</table>
+
+<h2 id="b">沿革</h2>
+<table>
+<tr><th>昭和26年</th><td>丸勝商店として創業</td></tr>
+<tr><th>昭和45年</th><td>丸勝鋼材株式会社に改組</td></tr>
+<tr><th>平成8年</th><td>港南物流センター開設</td></tr>
+<tr><th>平成15年度</th><td>官公庁工事および県内建設需要の増加に伴い異形棒鋼の取扱量が過去最高を記録</td></tr>
+</table>
+
+<h2 id="c">取扱メーカー</h2>
+<p>北郷製鋼株式会社/東亜スチール株式会社/西日本棒鋼株式会社(五十音順・一部)</p>
+
+<h2 id="d">お知らせ</h2>
+<ul class="news">
+<li>2006.04.01 ホームページを開設しました。</li>
+<li>2006.04.01 過去の納入実績資料の一部を関係者様向けに公開しています。お取引先様には<a href="#" onclick="document.getElementById('mihon').style.display='block';return false;">案内状</a>を送付いたしました。(<a href="#" onclick="document.getElementById('mihon').style.display='block';return false;">見本を見る</a>)</li>
+</ul>
+<div id="mihon" style="display:none;background:#fdfcf6;border:1px solid #999;max-width:440px;padding:22px 26px;margin:8px 0;transform:rotate(-0.6deg);box-shadow:2px 2px 4px rgba(0,0,0,.15);font-size:12px;line-height:2">
+お取引先様各位<br><br>
+拝啓 時下ますますご清栄のこととお慶び申し上げます。<br>
+このたび弊社ではホームページを開設し、過去の納入実績資料の一部を関係者様向けに公開する運びとなりました。<br>
+下記の資料番号にてご覧いただけます。<br><br>
+<span style="color:#c8c4b4">資料番号:MK-1503</span><br><br>
+今後とも変わらぬお引き立てのほど、よろしくお願い申し上げます。 敬具<br>
+<span style="font-size:10px;color:#999">※見本のため一部を薄く表示しています</span>
+</div>
+
+<h2 id="e">関係者様向け資料</h2>
+<div id="gate">
+<p>納入実績資料(2003年度下期)の閲覧には資料番号が必要です。<span class="small">※お取引先様に送付した案内状に記載しています</span></p>
+<input type="password" id="pw" placeholder="資料番号"> <button onclick="open_pdf()">閲覧</button>
+<div id="pdf">
+<b>■納入実績(抜粋) 2003年度下期 異形棒鋼</b><br><br>
+──────────────────────────<br>
+出荷日:2003/10/29 メーカー:北郷製鋼<br>
+ロットNo:<b>HG-0310-114C</b><br>
+納入先:大栄建設(株) 藤見市滝川町2丁目 共同住宅新築工事<br>
+──────────────────────────<br>
+出荷日:2003/10/31 メーカー:北郷製鋼<br>
+ロットNo:<b>HG-0310-114C</b><br>
+納入先:藤見ハウジング(株) 藤見市青葉台1丁目 共同住宅新築工事<br>
+──────────────────────────<br>
+出荷日:2003/11/02 メーカー:北郷製鋼<br>
+ロットNo:HG-0310-114C<br>
+納入先:(株)コジマ建工 県道4号 擁壁改修工事<br>
+──────────────────────────<br>
+出荷日:2003/10/20 メーカー:北郷製鋼<br>
+ロットNo:HG-0309-082A<br>
+納入先:(株)三田村組 藤見地方合同庁舎(労働基準監督署ほか)新築工事<br>
+──────────────────────────<br>
+<span class="small">※HG-0310ロット群は2003年10月出鋼分。急納期につき通常より前倒しで出荷。</span>
+</div>
+</div>
+
+</div>
+<script>
+function open_pdf(){
+var v=document.getElementById('pw').value.toUpperCase().replace(/[^A-Z0-9]/g,'');
+if(v==='MK1503'){document.getElementById('pdf').style.display='block';}
+else{alert('資料番号が正しくありません。');}
+}
+</script>
+</body>
+</html>
